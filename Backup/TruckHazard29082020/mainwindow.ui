@@ -6,15 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1119</width>
-    <height>619</height>
+    <width>868</width>
+    <height>594</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
-  </property>
-  <property name="autoFillBackground">
-   <bool>true</bool>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTabWidget" name="tabWidget">
@@ -22,8 +19,8 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>1101</width>
-      <height>601</height>
+      <width>851</width>
+      <height>571</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -38,8 +35,8 @@
        <rect>
         <x>10</x>
         <y>30</y>
-        <width>821</width>
-        <height>491</height>
+        <width>601</width>
+        <height>461</height>
        </rect>
       </property>
       <property name="autoFillBackground">
@@ -50,7 +47,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>540</y>
+        <y>500</y>
         <width>86</width>
         <height>24</height>
        </rect>
@@ -62,10 +59,10 @@
      <widget class="QListWidget" name="listCamera">
       <property name="geometry">
        <rect>
-        <x>850</x>
+        <x>620</x>
         <y>10</y>
-        <width>231</width>
-        <height>551</height>
+        <width>211</width>
+        <height>521</height>
        </rect>
       </property>
      </widget>
@@ -82,19 +79,6 @@
        <string>Camera Identifier :</string>
       </property>
      </widget>
-     <widget class="QLabel" name="distance">
-      <property name="geometry">
-       <rect>
-        <x>660</x>
-        <y>10</y>
-        <width>171</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Distance :</string>
-      </property>
-     </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
@@ -105,8 +89,8 @@
        <rect>
         <x>20</x>
         <y>20</y>
-        <width>881</width>
-        <height>481</height>
+        <width>631</width>
+        <height>451</height>
        </rect>
       </property>
       <property name="sortingEnabled">
@@ -116,7 +100,7 @@
      <widget class="QPushButton" name="addButton">
       <property name="geometry">
        <rect>
-        <x>920</x>
+        <x>670</x>
         <y>10</y>
         <width>171</width>
         <height>24</height>
@@ -129,7 +113,7 @@
      <widget class="QPushButton" name="deleteButton">
       <property name="geometry">
        <rect>
-        <x>920</x>
+        <x>670</x>
         <y>50</y>
         <width>171</width>
         <height>24</height>
@@ -142,7 +126,7 @@
      <widget class="QPushButton" name="saveButton">
       <property name="geometry">
        <rect>
-        <x>920</x>
+        <x>670</x>
         <y>90</y>
         <width>171</width>
         <height>24</height>
@@ -155,7 +139,7 @@
      <widget class="QPushButton" name="applyButton">
       <property name="geometry">
        <rect>
-        <x>920</x>
+        <x>670</x>
         <y>230</y>
         <width>171</width>
         <height>24</height>
@@ -169,7 +153,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>510</y>
+        <y>480</y>
         <width>321</width>
         <height>51</height>
        </rect>

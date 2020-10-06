@@ -3,7 +3,6 @@
 #include <QDebug>
 
 QString configfile = "thazard.conf";
-int count = 0;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -12,9 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     // Declare some default variables
-    QTimer *timer = new QTimer(this);
-    connect(timer, SIGNAL(timeout()), this, SLOT(displayDistance()));
-    timer->start(1000);
+
 
     // Media Player Setup
     player = new QMediaPlayer;
@@ -179,11 +176,6 @@ void MainWindow::populateIPList()
     saveConfig();
 }
 
-void MainWindow::displayDistance()
-{
-    ui->distance->setText(QString::number(count));
-    count++;
-}
 // Yet to implement... on some functions
 void MainWindow::displaymsg(QString text, QString error)
 {

@@ -10,9 +10,7 @@
 #include <QListWidget>
 #include <QFile>
 #include <QMessageBox>
-//#include <QSettings>
-#include <QTimer>
-#include <QFileSystemWatcher>
+#include <QSettings>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -39,7 +37,6 @@ private slots:
     void saveConfig();
     void populateIPList();
     void displaymsg(QString text, QString error);
-    void displayDistance();
 
 private:
 
@@ -47,7 +44,6 @@ private:
     QPushButton *m_button;
     QMediaPlayer *player;
     QNetworkRequest streamurl;
-    QFileSystemWatcher ledsig;
 };
 
 #endif // MAINWINDOW_H

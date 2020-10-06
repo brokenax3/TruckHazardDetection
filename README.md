@@ -13,3 +13,8 @@ sudo apt-get install libgstreamer* qt5-default qtcreator
 
 ```
 
+# Misc
+- Backup29082020
+- Backup07102020 (Current)
+
+
