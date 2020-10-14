@@ -3,8 +3,6 @@
 #include <QDebug>
 
 QString configfile = "thazard.conf";
-QString path = "/externalDrive/Documents/Projects/led.txt";
-QString cameraitem;
 int count = 0;
 
 MainWindow::MainWindow(QWidget *parent)
@@ -14,17 +12,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     // Declare some default variables
-    //QTimer *timer = new QTimer(this);
-    QFile file(path);
-    QFileSystemWatcher *watcher = new QFileSystemWatcher(this);
-    connect(watcher, SIGNAL(fileChanged(const QString &)), this, SLOT(displayVideo()));
-    watcher->addPath(file.fileName());
-
-
-
-    //connect(timer, SIGNAL(timeout()), this, SLOT(displayDistance()));
-    //connect(ui->listCamera, SIGNAL(on_listCamera_itemSelectionChanged()), this, SLOT(changeCamera()));
-    //timer->start(10000);
+    QTimer *timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(displayDistance()));
+    timer->start(1000);
 
     // Media Player Setup
     player = new QMediaPlayer;
@@ -63,32 +53,37 @@ void MainWindow::on_deleteButton_clicked()
     }
 }
 
-// Timer video Toggle
-void MainWindow::displayVideo()
+// Toggles the Play Button
+void MainWindow::on_toggleButton_clicked()
 {
-    QFile file(path);
 
-    if(file.open(QIODevice::ReadOnly | QIODevice::Text))
+    if(player->isVideoAvailable() == 1)
     {
-        QTextStream stream(&file);
-
-        QString ledCond = stream.readLine();
-
-        if(ledCond == "1")
+        switch(player->state())
         {
-            changeCamera();
-            if(player->state() != 1)
-            {
+            case 0:
+                ui->toggleButton->setText("Stop");
                 player->play();
-            }
+                break;
+
+            case 1:
+                ui->toggleButton->setText("Play");
+                player->stop();
+                break;
+
+            case 2:
+                ui->toggleButton->setText("Stop");
+                player->play();
+                break;
+
         }
-        else
-        {
-            player->stop();
-        }
+    }else{
+
+        ui->toggleButton->setText("Play");
+        player->stop();
+        displaymsg("Media Error",player->errorString());
     }
-    file.close();
- }
+}
 
 // Saves the configuration file on button click.
 void MainWindow::on_saveButton_clicked()
@@ -100,16 +95,8 @@ void MainWindow::on_saveButton_clicked()
 void MainWindow::on_listCamera_itemSelectionChanged()
 {
     QListWidgetItem * item = ui->listCamera->currentItem();
-    cameraitem = item->text();
-}
+    QString cameraitem = item->text();
 
-void MainWindow::changeCamera()
-{
-    if(cameraitem == "")
-    {
-        displaymsg("Invalid Camera","Camera not selected.");
-        return;
-    }
     // Split String with regex. Delimiter is "\"
     QRegExp delim("(\\\\)");
     QStringList token = cameraitem.split(delim);
@@ -126,7 +113,9 @@ void MainWindow::changeCamera()
         ui->camName->setText("Camera : " + token.at(0));
         player->setMedia(requestrtsp);
     }
+
 }
+
 // Populates the IP Address List
 void MainWindow::on_applyButton_clicked()
 {

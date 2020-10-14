@@ -39,11 +39,24 @@
         <x>10</x>
         <y>30</y>
         <width>821</width>
-        <height>521</height>
+        <height>491</height>
        </rect>
       </property>
       <property name="autoFillBackground">
        <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="toggleButton">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>540</y>
+        <width>86</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Play</string>
       </property>
      </widget>
      <widget class="QListWidget" name="listCamera">

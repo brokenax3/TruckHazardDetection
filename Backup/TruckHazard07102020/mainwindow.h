@@ -31,7 +31,7 @@ private slots:
 
     void on_addButton_clicked();
     void on_deleteButton_clicked();
-    //void on_toggleButton_clicked();
+    void on_toggleButton_clicked();
     void on_saveButton_clicked();
     void on_listCamera_itemSelectionChanged();
     void on_applyButton_clicked();
@@ -40,8 +40,6 @@ private slots:
     void populateIPList();
     void displaymsg(QString text, QString error);
     void displayDistance();
-    void displayVideo();
-    void changeCamera();
 
 private:
 
@@ -49,6 +47,7 @@ private:
     QPushButton *m_button;
     QMediaPlayer *player;
     QNetworkRequest streamurl;
+    QFileSystemWatcher ledsig;
 };
 
 #endif // MAINWINDOW_H
