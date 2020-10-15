@@ -27,29 +27,31 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+
 private slots:
 
-    //void on_addButton_clicked();
-    //void on_deleteButton_clicked();
+    void on_addButton_clicked();
+    void on_deleteButton_clicked();
     //void on_toggleButton_clicked();
     void on_saveButton_clicked();
-    //void on_listCamera_itemSelectionChanged();
+    void on_listCamera_itemSelectionChanged();
     void on_applyButton_clicked();
     void loadConfig();
     void saveConfig();
     void populateIPList();
     void displaymsg(QString text, QString error);
     void displayDistance();
-    void displayVideoLeft();
-    void displayVideoRight();
-    int changeCamera(int camSelect);
+    void displayVideo();
+    void changeCamera();
+
 
 private:
 
     Ui::MainWindow *ui;
+    QPushButton *m_button;
     QMediaPlayer *player;
-    QString leftCamera;
-    QString rightCamera;
+    QNetworkRequest streamurl;
+
 };
 
 #endif // MAINWINDOW_H

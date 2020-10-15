@@ -14,6 +14,14 @@ sudo apt-get install libgstreamer* qt5-default qtcreator
 ```
 
 # Changelog
+- 16-10-2020
+    - Re-Implemented some UI elements
+    - Auto-switching now works with Left and Right Camera
+    - Enable setting, saving and applying two cameras
+    - Distance displaying improvements
+    - Quick start instructions
+    - FileWatcher works
+    - Code clean-up 
 - 15-10-2020
     - Implemented Automatic switching with Photoresistor
     - Reverted FileWatcher as it breaks automatic video stream displaying (GStreamer Error)
@@ -30,5 +38,6 @@ sudo apt-get install libgstreamer* qt5-default qtcreator
 - Backup14102020
     - camera.cpp (photoresistor trigger script)
     - MQTT stuff
+- Backup16102020
 
 
