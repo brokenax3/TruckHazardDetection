@@ -27,7 +27,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -148,13 +148,13 @@
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline;&quot;&gt;Quick Start&lt;/span&gt;&lt;/p&gt;&lt;p&gt;1. Input desired Camera Streams according to orientation.&lt;/p&gt;&lt;p&gt;2. Select Camera to turn ON.&lt;/p&gt;&lt;p&gt;3. Apply and switch back to Video Stream Tab.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
-     <widget class="QWidget" name="layoutWidget">
+     <widget class="QWidget" name="">
       <property name="geometry">
        <rect>
         <x>10</x>
         <y>20</y>
         <width>711</width>
-        <height>59</height>
+        <height>54</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
@@ -190,12 +190,12 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="layoutWidget">
+     <widget class="QWidget" name="">
       <property name="geometry">
        <rect>
         <x>790</x>
         <y>10</y>
-        <width>127</width>
+        <width>114</width>
         <height>111</height>
        </rect>
       </property>

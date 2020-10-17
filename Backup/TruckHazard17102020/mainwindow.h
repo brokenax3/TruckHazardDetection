@@ -7,6 +7,7 @@
 #include <QVideoWidget>
 #include <QLabel>
 #include <QNetworkRequest>
+#include <QListWidget>
 #include <QFile>
 #include <QMessageBox>
 //#include <QSettings>
@@ -26,12 +27,6 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    void loadConfig();
-    void saveConfig();
-    void populateIPList();
-    void displaymsg(QString text, QString error);
-    int changeCamera(int camSelect);
-
 private slots:
 
     //void on_addButton_clicked();
@@ -40,11 +35,14 @@ private slots:
     void on_saveButton_clicked();
     //void on_listCamera_itemSelectionChanged();
     void on_applyButton_clicked();
+    void loadConfig();
+    void saveConfig();
+    void populateIPList();
+    void displaymsg(QString text, QString error);
     void displayDistance();
     void displayVideoLeft();
     void displayVideoRight();
-
-    void on_leftCamON_stateChanged(int arg);
+    int changeCamera(int camSelect);
 
 private:
 
@@ -52,7 +50,6 @@ private:
     QMediaPlayer *player;
     QString leftCamera;
     QString rightCamera;
-    int authCamera = 0;
 };
 
 #endif // MAINWINDOW_H

@@ -46,6 +46,8 @@ private slots:
 
     void on_leftCamON_stateChanged(int arg);
 
+    void on_rightCamON_stateChanged(int arg1);
+    
 private:
 
     Ui::MainWindow *ui;

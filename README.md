@@ -9,11 +9,17 @@ Make sure everything is updated.
 ```bash
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get install libgstreamer* qt5-default qtcreator
+sudo apt-get install libqt5multimedia5-plugins qml-module-qtmultimedia qt5-default qtcreator qtmultimedia5-dev 
 
 ```
 
 # Changelog
+- 18-10-2020
+    - Video player optimisations
+    - Streams not playing smoothly is an issue with the streamer, not the client.
+        - Tested with RTSP stream test and hosting VLC stream and video and audio was playing as expected
+    - Fixed some problems with code
+    - Update dependencies list
 - 16-10-2020
     - Re-Implemented some UI elements
     - Auto-switching now works with Left and Right Camera
@@ -39,5 +45,7 @@ sudo apt-get install libgstreamer* qt5-default qtcreator
     - camera.cpp (photoresistor trigger script)
     - MQTT stuff
 - Backup16102020
+- Backup17102020
+
 
 

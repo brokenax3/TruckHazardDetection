@@ -6,21 +6,29 @@
 const QString configfile = "thazard.conf";
 
 // Left Camera and Ultrasonic Distance
-const QString ledLeftPath = "ledLeft.txt";
-const QString distLeftPath = "distanceLeft.txt";
+const QString ledLeftPath = "/externalDrive/Documents/Projects/ledLeft.txt";
+const QString distLeftPath = "/externalDrive/Documents/Projects/distanceLeft.txt";
 
 // Right Camera and Ultrasonic Distance
-const QString ledRightPath = "ledRight.txt";
-const QString distRightPath = "distanceRight.txt";
+const QString ledRightPath = "/externalDrive/Documents/Projects/ledRight.txt";
+const QString distRightPath = "/externalDrive/Documents/Projects/distanceRight.txt";
 
 //const QString cameraitem;
 //int count = 0;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow){
-
+    , ui(new Ui::MainWindow)
+{
     ui->setupUi(this);
+
+    // Declare some default variables
+    //QTimer *timer = new QTimer(this);
+    //QFile file(path);
+
+    // Trigger populateIPList when checkboxes are changed
+    //connect(ui->leftCamON, SIGNAL(stateChanged()), this, SLOT(populateIPList()));
+    //connect(ui->rightCamON, SIGNAL(stateChanged()), this, SLOT(populateIPList()));
 
     // Start timer to show distance at an interval
     //QTimer *timer = new QTimer(this);
@@ -28,9 +36,12 @@ MainWindow::MainWindow(QWidget *parent)
     //connect(timer, SIGNAL(timeout()), this, SLOT(displayDistance()));
     //timer->start(1000);
 
+    //connect(timer, SIGNAL(timeout()), this, SLOT(displayDistance()));
+    //connect(ui->listCamera, SIGNAL(on_listCamera_itemSelectionChanged()), this, SLOT(changeCamera()));
+    //timer->start(10000);
+
     // Media Player Setup
     player = new QMediaPlayer(this,QMediaPlayer::LowLatency);
-
     player->setVideoOutput(ui->container);
 
     // Initialise Defaults
@@ -43,7 +54,8 @@ MainWindow::MainWindow(QWidget *parent)
 
 }
 
-MainWindow::~MainWindow(){
+MainWindow::~MainWindow()
+{
     delete ui;
 }
 
@@ -65,19 +77,13 @@ void MainWindow::displayVideoLeft(){
                 if(player->state() != 1){
 
                     player->play();
-
-                    // Set Lock to Left Camera so that Right Camera trigger will not overwrite media player
-                    authCamera = 1;
                 }
             }
-        }else if(authCamera == 1){
+        }
+        else{
 
-            // Only stop camera if the same lock is presented
             changeCamera(3);
             player->stop();
-
-            // Remove lock on Camera
-            authCamera = 0;
 
         }
     }
@@ -101,24 +107,17 @@ void MainWindow::displayVideoRight(){
                 if(player->state() != 1){
 
                     player->play();
-
-                    // Set Lock to Right Camera so that Left Camera trigger will not overwrite media player
-                    authCamera = 2;
                 }
             }
-        }else if(authCamera == 2){
+        }
+        else{
 
-            // Only stop camera if the same lock is presented
             changeCamera(3);
             player->stop();
-
-            // Remove lock on Camera
-            authCamera = 0;
         }
     }
     file.close();
 }
-
 
 
 // Saves the configuration file on button click.
@@ -130,10 +129,6 @@ void MainWindow::on_saveButton_clicked(){
 
 int MainWindow::changeCamera(int camSelect){
 
-    if(authCamera != 0){
-
-        return -1;
-    }
     switch (camSelect) {
         case 1:
 
@@ -149,8 +144,8 @@ int MainWindow::changeCamera(int camSelect){
                 player->setMedia(NULL);
                 player->setMedia(requestrtsp);
 
+                return 1;
             }
-            break;
         case 2:
 
             if (rightCamera == "" && ui->rightCamON->checkState() == 2){
@@ -159,24 +154,23 @@ int MainWindow::changeCamera(int camSelect){
 
                 return -1;
             }else{
-                ui->camName->setText("Right Camera");
-                const QNetworkRequest requestrtsp(rightCamera);
-                player->setMedia(NULL);
-                player->setMedia(requestrtsp);
 
+                 const QNetworkRequest requestrtsp(rightCamera);
+                 player->setMedia(NULL);
+                 player->setMedia(requestrtsp);
+
+                 return 1;
             }
-            break;
         case 3:
 
             ui->camName->setText("Camera not triggered");
             player->setMedia(NULL);
-            break;
+
+            return 1;
         default:
 
             return -1;
     }
-
-    return 1;
 }
 
 // Populates the IP Address List
@@ -194,14 +188,12 @@ void MainWindow::saveConfig(){
     QString rightState = "";
 
     if(ui->leftCamON->checkState() == 2){
-
         leftState = "2";
     }
-    if(ui->rightCamON->checkState() == 2){
 
+    if(ui->rightCamON->checkState() == 2){
         rightState = "2";
     }
-
     if(file.open(QIODevice::WriteOnly | QIODevice::Text)){
 
         QTextStream stream(&file);
@@ -287,7 +279,7 @@ void MainWindow::populateIPList(){
         watcherLeft->addPath(ledLeft.fileName());
     }
 
-    if(ui->rightCamON->checkState() == 2){
+    if(ui->rightCamON->checkState() == 1){
 
         QFile ledRight(ledRightPath);
 
@@ -302,8 +294,8 @@ void MainWindow::populateIPList(){
     }
 }
 
-void MainWindow::displayDistance(){
-
+void MainWindow::displayDistance()
+{
     if(ui->camName->text() == "Left Camera"){
         QFile distanceLeft(distLeftPath);
 
@@ -334,26 +326,12 @@ void MainWindow::displayDistance(){
 }
 
 // Yet to implement... on some functions
-void MainWindow::displaymsg(QString text, QString error){
+void MainWindow::displaymsg(QString text, QString error)
+{
     QMessageBox msgBox;
 
     msgBox.setText(text);
     msgBox.setStandardButtons(QMessageBox::Ok);
     msgBox.setDetailedText(error);
     msgBox.exec();
-}
-
-// Trigger populateIPList when checkboxes are changed
-void MainWindow::on_leftCamON_stateChanged(int arg){
-
-    if(arg == 2){
-        populateIPList();
-    }
-}
-
-void MainWindow::on_rightCamON_stateChanged(int arg){
-
-    if(arg == 2){
-        populateIPList();
-    }
 }
