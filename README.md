@@ -1,6 +1,11 @@
 # TruckHazardDetection
 A program to display video feed from a Raspberry Pi Zero by Team14 XIV Consulting.
 
+The project consists of three parts:
+- Camera Module
+- MQTT + Ultrasonic Sensor
+- Main Unit
+
 # Requirements
 > QT += core gui multimedia multimediawidgets
 
@@ -15,11 +20,104 @@ sudo apt-get install libqt5multimedia5-plugins qml-module-qtmultimedia qt5-defau
 
 ```
 
+# Setup 
+
+## Camera Module
+Put the following into a bash script:
+
+```bash
+#!/bin/bash
+
+raspivid -o - -t 0 -rot 180 -w 640 -h 480 -fps 15 -b 2000000 | cvlc -vvv stream:///dev/stdin --sout '#rtp{sdp=rtsp://:8554/stream}' :demux=h264
+```
+
+## MQTT
+1. Install mosquitto
+
+```bash
+wget http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key
+sudo apt-key add mosquitto-repo.gpg.key
+cd /etc/apt/sources.list.d/
+sudo wget http://repo.mosquitto.org/debian/mosquitto-stretch.list
+sudo apt-get update
+sudo apt-get install mosquitto
+sudo apt-get install mosquitto-clients
+systemctl status mosquitto.service
+```
+
+2. Configure mosquitto
+
+Once installed:
+
+> sudo nano /etc/mosquitto/mosquitto.conf
+
+At the bottom of this file, you should see the line:
+> include_dir /etc/mosquitto/conf.d
+
+Comment this line above and add the following lines to the bottom of the file:
+
+```bash
+allow_anonymous false
+password_file /etc/mosquitto/pwfile
+listener 1883
+```
+
+Then:
+> sudo mosquitto_passwd -c /etc/mosquitto/pwfile username
+
+Enter a new password: `raspberry`
+
+## Main Unit
+
+### Main Process
+1. Compile `camera.cpp` and place into debug directory with
+
+> g++ -Wall -o leftLDR camera.cpp -lwiringPi
+
+2. Edit parameters for Server.py to Host IP Address
+
+```python
+- mqtt_broker_ip = "192.168.43.145" # CHANGE TO RPI IP
++ mqtt_broker_ip = "<Raspberry Pi Host IP Address HERE>" # CHANGE TO RPI IP
+```
+
+3. WiFi Hosting with [raspap](https://raspap.com/#quick-installer)
+
+> curl -sL https://install.raspap.com | bash
+
+4. Run `autoTruckHazard`
+
+### SSH Enable/ Disable Camera
+1. Install expect
+
+> sudo apt-get install expect
+
+2. Put the following into /usr/bin/exp:
+
+```bash
+#!/usr/bin/expect
+
+set timeout 20
+
+set cmd [lrange $argv 1 end]
+set password [lindex $argv 0]
+
+eval spawn $cmd
+expect "assword:"
+send "$password\r";
+interact
+```
+
+- Usage:
+    - `exp <password> ssh <anything>`
+    - `exp <password> scp <anysrc> <anydst>`
+
 # Changelog
 - 18-10-2020
     - Attempt at implementing activating camera via bash scripting
         - QProcess::start() is depreciated
     - Autostart script
+    - More instructions on installation process
 - 17-10-2020
     - Video player optimisations
     - Streams not playing smoothly is an issue with the streamer, not the client.

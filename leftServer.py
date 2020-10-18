@@ -11,7 +11,7 @@ import string
 mqtt_username = "username"
 mqtt_password = "raspberry"
 mqtt_topic = "esp8266"
-mqtt_broker_ip = "192.168.43.145"
+mqtt_broker_ip = "192.168.43.145" # CHANGE TO RPI IP
 
 client = mqtt.Client()
 # Set the username and password for the MQTT client
@@ -38,7 +38,7 @@ def on_message(client, userdata, msg):
     distance = distance.lstrip("''")
     f.write(str(distance))
     f.close()
-    f = open("distance.txt","r")
+    f = open("distanceLeft.txt","r")
     if f.mode == "r":
         contents = f.read()
         print("The distance is:", contents, "cm")

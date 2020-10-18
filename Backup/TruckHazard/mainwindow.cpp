@@ -23,10 +23,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     // Start timer to show distance at an interval
-    QTimer *timer = new QTimer(this);
+    //QTimer *timer = new QTimer(this);
 
-    connect(timer, SIGNAL(timeout()), this, SLOT(displayDistance()));
-    timer->start(1000);
+    //connect(timer, SIGNAL(timeout()), this, SLOT(displayDistance()));
+    //timer->start(1000);
 
     // Media Player Setup
     player = new QMediaPlayer(this,QMediaPlayer::LowLatency);
