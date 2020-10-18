@@ -357,25 +357,3 @@ void MainWindow::on_rightCamON_stateChanged(int arg){
         populateIPList();
     }
 }
-
-// Testing starting and stopping Camera over ssh (Depreciated)
-//void MainWindow::constructScript(int cam, bool start){
-
-//    const QString prefix = "exp raspberry ssh pi@";
-//    const QString startCam = "~/.rtsp-stream.sh";
-//    const QString stopCam = "killall raspivid";
-//    QString command;
-//    QProcess *process1 = new QProcess(this);
-
-//    if(cam == 1 && start == 1){
-
-//        command = ui->leftCamItem->text();
-//        command = prefix + command.split(":")[1].replace("//","") + startCam;
-//        process1->start(command);
-
-//    }else if(cam == 1 && start == 0){
-
-//        command = ui->leftCamItem->text();
-//        command = prefix + command.split(":")[1].replace("//","") + stopCam;
-//    }
-//}

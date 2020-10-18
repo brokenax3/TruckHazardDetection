@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Autostart script for Team14-XIV Consulting
+
+# Starting MQTT Server for distance detection
+nohup python3 ./leftServer.py &
+
+# Start Photoresistor Detection
+nohup ./leftLDR &
+
+# Start User Interface
+cd build-TruckHazard-Desktop-Release
+
+nohup ./TruckHazard &
+
+

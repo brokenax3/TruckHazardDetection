@@ -6,6 +6,8 @@ A program to display video feed from a Raspberry Pi Zero by Team14 XIV Consultin
 
 Make sure everything is updated.
 
+**Important: Ensure that Fake KMS is enabled on Raspberry Pi** to ensure `libEGL warning: DRI2: failed to authenticate` does not occur.
+
 ```bash
 sudo apt-get update
 sudo apt-get upgrade
@@ -15,6 +17,10 @@ sudo apt-get install libqt5multimedia5-plugins qml-module-qtmultimedia qt5-defau
 
 # Changelog
 - 18-10-2020
+    - Attempt at implementing activating camera via bash scripting
+        - QProcess::start() is depreciated
+    - Autostart script
+- 17-10-2020
     - Video player optimisations
     - Streams not playing smoothly is an issue with the streamer, not the client.
         - Tested with RTSP stream test and hosting VLC stream and video and audio was playing as expected
@@ -46,6 +52,7 @@ sudo apt-get install libqt5multimedia5-plugins qml-module-qtmultimedia qt5-defau
     - MQTT stuff
 - Backup16102020
 - Backup17102020
+- Backup18102020
 
 
 

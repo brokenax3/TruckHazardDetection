@@ -9,9 +9,9 @@
 #include <QNetworkRequest>
 #include <QFile>
 #include <QMessageBox>
+//#include <QSettings>
 #include <QTimer>
 #include <QFileSystemWatcher>
-//#include <QProcess>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -43,9 +43,10 @@ private slots:
     void displayDistance();
     void displayVideoLeft();
     void displayVideoRight();
+
     void on_leftCamON_stateChanged(int arg);
+
     void on_rightCamON_stateChanged(int arg1);
-    //void constructScript(int cam, bool start);
 
 private:
 
