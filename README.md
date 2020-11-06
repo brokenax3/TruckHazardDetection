@@ -1,6 +1,8 @@
 # TruckHazardDetection
 A program to display video feed from a Raspberry Pi Zero by Team14 XIV Consulting.
 
+The video demonstration of the product can be shown in VideoDemonstration.mp4
+
 The project consists of three parts:
 - Camera Module
 - MQTT + Ultrasonic Sensor
