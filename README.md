@@ -1,9 +1,7 @@
 # Overview
 The Truck Hazard Detection System is created by XIV Consulting. It is a modular system which provides additional safety features for older trucks.
 
-![Truck Hazard Detection System](media/working.png){ width=50% }
-
-![Truck Hazard Detection User Interface](media/userinterface.png){ width=50% }
+![Truck Hazard Detection System](media/combined.png)
 
 The code for the project resides at [TruckHazardDetection](https://github.com/brokenax3/TruckHazardDetection). Bug reports and suggestions are welcome. The wiki provides troubleshooting guides and setup.
 
@@ -20,6 +18,9 @@ The code for the project resides at [TruckHazardDetection](https://github.com/br
 3. Apply and Save the configured settings and return to the Video Stream Tab.
 
 # Changelog
+- 09-11-2020
+    - Documentation and README update
+    - Code Cleanup
 - 18-10-2020
     - Attempt at implementing activating camera via bash scripting
         - QProcess::start() is depreciated
