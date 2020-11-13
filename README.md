@@ -3,6 +3,8 @@ The Truck Hazard Detection System is created by XIV Consulting. It is a modular 
 
 ![Truck Hazard Detection System](media/combined.png)
 
+![Ultrsonic Sensor](media/ultrasonic.jpg)
+
 The code for the project resides at [TruckHazardDetection](https://github.com/brokenax3/TruckHazardDetection). Bug reports and suggestions are welcome. The wiki provides troubleshooting guides and setup.
 
 # Features
